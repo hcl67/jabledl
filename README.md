@@ -1,16 +1,24 @@
-# jabledl
+# Update 20250620
+
+Forked from [Yooootsuba/jabledl](https://github.com/Yooootsuba/jabledl)
+Fixed Video.get_metadata by changing requests to selenium
+It should work now
+
+# Original Readme from 
+
+## jabledl
 
 jabledl is a video downloader for Jable TV.
 
-## Screenshot
+### Screenshot
 
 ![](./demo.png)
 
-## Dependency
+### Dependency
 
 jabledl depends on [FFmpeg](https://www.ffmpeg.org/) to convert MPEG2-TS file to MP4.
 
-## Install
+### Install
 
 Clone this repository
 
@@ -24,7 +32,7 @@ Install jabledl
 $ sudo python3 setup.py install
 ```
 
-## Usage
+### Usage
 
 Interactive mode
 
@@ -38,6 +46,6 @@ Non-interactive mode
 $ jabledl -i https://jable.tv/videos/CAR-NUMBER/
 ```
 
-## License
+### License
 
 MIT License

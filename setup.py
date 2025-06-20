@@ -13,6 +13,7 @@ setup(name             = "jabledl",
           'm3u8',
           'requests',
           'beautifulsoup4',
+          'selenium'
       ],
       entry_points = {
           'console_scripts': ['jabledl=jabledl.jabledl:main'],

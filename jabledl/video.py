@@ -2,6 +2,8 @@ import re
 import m3u8
 import requests
 from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 
 class Video:
@@ -23,18 +25,31 @@ class Video:
         self.html              = None
         self.soup              = None
 
-        '''Requests headers'''
+        '''Headless chrome options seeting'''
+        self.options = Options()
+        self.options.add_argument("--headless=new")
+        self.options.add_argument("user-agent='Mozilla/5.0 \
+                            (Windows NT 10.0; Win64; x64) \
+                            AppleWebKit/537.36 (KHTML, like Gecko) \
+                            Chrome/137.0.0.0 \
+                            Safari/537.36 \
+                            Edg/137.0.3296.93'")
+        
         self.requests_headers = {'User-Agent' : 'Mozilla/5.0 \
-                                  (X11; Linux x86_64)        \
-                                  AppleWebKit/537.36         \
-                                  (KHTML, like Gecko)        \
-                                  Chrome/90.0.4430.212       \
-                                  Safari/537.36'             \
-                                }
-
+                                (Windows NT 10.0; Win64; x64) \
+                                AppleWebKit/537.36 (KHTML, like Gecko) \
+                                Chrome/137.0.0.0 \
+                                Safari/537.36 \
+                                Edg/137.0.3296.93'
+                   }
 
     def get_metadata(self):
-        self.html = requests.get(self.url, headers = self.requests_headers).text
+        driver = webdriver.Chrome(options=self.options)
+        try:
+            driver.get(self.url)
+            self.html = driver.page_source
+        finally:
+            driver.quit()
         self.soup = BeautifulSoup(self.html, 'html.parser')
 
         self.get_car_number()
